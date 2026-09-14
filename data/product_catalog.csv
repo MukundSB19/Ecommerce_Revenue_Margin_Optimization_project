@@ -1,0 +1,22 @@
+sku,name,cat,subcat,cogs,list_price,weight_kg
+ELEC-101,Wireless Noise-Canceling Headphones,Electronics,Audio,45.0,99.99,0.4
+ELEC-102,Smart Fitness Watch V2,Electronics,Wearables,55.0,129.99,0.25
+ELEC-103,Ultra-Fast USB-C Charging Hub,Electronics,Accessories,12.0,34.99,0.3
+ELEC-104,Mechanical RGB Gaming Keyboard,Electronics,Gaming,38.0,89.99,1.1
+ELEC-105,4K HDR Streaming Media Stick,Electronics,Video,18.0,49.99,0.2
+ELEC-106,Portable Bluetooth Speaker (Waterproof),Electronics,Audio,22.0,59.99,0.6
+HOME-201,Stainless Steel Espresso Machine,Home & Kitchen,Appliances,85.0,189.99,4.5
+HOME-202,Digital Air Fryer XL 6-Quart,Home & Kitchen,Appliances,48.0,109.99,5.2
+HOME-203,Ergonomic Memory Foam Pillow,Home & Kitchen,Bedding,14.0,39.99,1.2
+HOME-204,Chef Knife Set 8-Piece High Carbon,Home & Kitchen,Cookware,30.0,79.99,2.0
+HOME-205,Cordless Handheld Vacuum,Home & Kitchen,Cleaning,36.0,84.99,1.8
+HOME-206,Ceramic Non-Stick Frying Pan 10-inch,Home & Kitchen,Cookware,15.0,34.99,1.1
+APP-301,Men's Performance Athletic Joggers,Apparel,Men's Clothing,16.0,44.99,0.4
+APP-302,Women's Seamless High-Waist Leggings,Apparel,Women's Clothing,12.0,38.99,0.3
+APP-303,Water-Resistant Trail Running Shoes,Apparel,Footwear,34.0,94.99,0.9
+APP-304,Heavyweight Cotton Pullover Hoodie,Apparel,Unisex,18.0,49.99,0.7
+APP-305,Polarized UV400 Sport Sunglasses,Apparel,Accessories,6.5,29.99,0.1
+BEAU-401,Vitamin C + Hyaluronic Acid Serum,Beauty,Skincare,5.5,24.99,0.15
+BEAU-402,Sonic Electric Toothbrush Set,Beauty,Oral Care,20.0,54.99,0.45
+BEAU-403,Professional Ionic Hair Dryer,Beauty,Hair Care,28.0,69.99,0.85
+BEAU-404,Organic Retinol Night Cream 50ml,Beauty,Skincare,7.0,28.99,0.2

@@ -1,0 +1,116 @@
+// =====================================================================
+// Project: E-Commerce Revenue & Margin Optimization Analysis
+// File: dax_measures_catalog.dax
+// Description: Comprehensive DAX formulas for Power BI margin modeling.
+// =====================================================================
+
+// ---------------------------------------------------------------------
+// 1. Core Financial Performance Measures
+// ---------------------------------------------------------------------
+
+Gross Revenue ($) = 
+SUM('ecommerce_transactions'[gross_revenue])
+
+Total Discounts ($) = 
+SUM('ecommerce_transactions'[discount_amount])
+
+Discount Rate % = 
+DIVIDE([Total Discounts ($)], [Gross Revenue ($)], 0)
+
+Net Revenue ($) = 
+SUM('ecommerce_transactions'[net_revenue])
+
+Total COGS ($) = 
+SUM('ecommerce_transactions'[total_cogs])
+
+Gross Profit ($) = 
+SUM('ecommerce_transactions'[gross_profit])
+
+Gross Margin % = 
+DIVIDE([Gross Profit ($)], [Net Revenue ($)], 0)
+
+Net Profit ($) = 
+SUM('ecommerce_transactions'[net_profit])
+
+Net Profit Margin % = 
+DIVIDE([Net Profit ($)], [Net Revenue ($)], 0)
+
+Total Orders = 
+DISTINCTCOUNT('ecommerce_transactions'[order_id])
+
+Total Units Sold = 
+SUM('ecommerce_transactions'[quantity])
+
+Average Order Value (AOV) = 
+DIVIDE([Net Revenue ($)], [Total Orders], 0)
+
+
+// ---------------------------------------------------------------------
+// 2. Friction & Margin Leakage Metrics
+// ---------------------------------------------------------------------
+
+Total Actual Freight Cost ($) = 
+SUM('ecommerce_transactions'[actual_shipping_cost])
+
+Shipping Revenue Collected ($) = 
+SUM('ecommerce_transactions'[shipping_fee_collected])
+
+Net Shipping Deficit ($) = 
+[Total Actual Freight Cost ($)] - [Shipping Revenue Collected ($)]
+
+Merchant Gateway Fees ($) = 
+SUM('ecommerce_transactions'[payment_processing_fee])
+
+Reverse Logistics Cost ($) = 
+SUM('ecommerce_transactions'[return_processing_cost])
+
+Total Returned Orders = 
+CALCULATE(
+    COUNTROWS('ecommerce_transactions'),
+    'ecommerce_transactions'[return_status] = "Returned"
+)
+
+Return Rate % = 
+DIVIDE([Total Returned Orders], COUNTROWS('ecommerce_transactions'), 0)
+
+Margin Leakage Volume ($) = 
+CALCULATE(
+    SUM('ecommerce_transactions'[net_revenue]),
+    'ecommerce_transactions'[margin_leakage_flag] = 1
+)
+
+Margin Leakage Ratio % = 
+DIVIDE([Margin Leakage Volume ($)], [Net Revenue ($)], 0)
+
+
+// ---------------------------------------------------------------------
+// 3. What-If Scenario Modeler (9% Net Profit Expansion)
+// ---------------------------------------------------------------------
+
+Target Net Profit (9% Lift) ($) = 
+[Net Profit ($)] * 1.09
+
+Required Incremental Profit ($) = 
+[Target Net Profit (9% Lift) ($)] - [Net Profit ($)]
+
+Simulated Price Lift Impact ($) = 
+CALCULATE(
+    [Net Revenue ($)] * 0.035,
+    'ecommerce_transactions'[category] IN {"Beauty", "Electronics"}
+)
+
+Simulated Discount Cap Savings ($) = 
+CALCULATE(
+    SUMX(
+        'ecommerce_transactions',
+        IF('ecommerce_transactions'[discount_pct] > 0.15, 
+           'ecommerce_transactions'[gross_revenue] * ('ecommerce_transactions'[discount_pct] - 0.15), 
+           0)
+    )
+)
+
+Optimized Net Profit (All Levers) ($) = 
+[Net Profit ($)] + [Simulated Price Lift Impact ($)] + [Simulated Discount Cap Savings ($)]
+
+Realized Profit Expansion % = 
+DIVIDE([Optimized Net Profit (All Levers) ($)] - [Net Profit ($)], [Net Profit ($)], 0)
